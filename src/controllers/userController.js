@@ -54,7 +54,7 @@ let creatUser = async function (req, res) {
               batch: "Asyscraft Technologies Pvt Ltd",
               project: "FirstProject"
           },
-          process.env.AcessSecretKey, { expiresIn: '12h' }
+          "firstProjectSecrectCode", { expiresIn: '12h' }
       )
 
       const UserId = loggedAuthor['_id'];
