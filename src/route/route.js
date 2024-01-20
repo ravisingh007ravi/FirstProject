@@ -10,5 +10,7 @@ router.post("/register",creatUser)
 router.post("/Member",CreateMember)
 router.post("/Earning",EarningMember)
 router.post("/Login", authentication, authorization, login);
+router.all("/*",(req,res)=>{
+    res.status(400).send({status:false,message:"Url is not Correct"})})
 
 module.exports = router;
