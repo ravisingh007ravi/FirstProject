@@ -34,14 +34,14 @@ let creatUser = async function (req, res) {
 
       let author = req.body;
 
-      let { userName, password } = author;
+      let { email, password } = author;
 
-      if (userName.trim().length == 0 || password.trim().length == 0) return res.status(400).send({ status: false, msg: "please provide login details" });
+      if (email.trim().length == 0 || password.trim().length == 0) return res.status(400).send({ status: false, msg: "please provide login details" });
 
-      if (!userName) return res.status(400).send({ msg: " email is required " })
+      if (!email) return res.status(400).send({ msg: " email is required " })
       if (!password) return res.status(400).send({ msg: "  password is required " })
 
-      let loggedAuthor = await authorModel.findOne({ userName: userName })
+      let loggedAuthor = await UserModel.findOne({ email: email })
       if (!loggedAuthor) return res.status(400).send({ msg: "Email is Incorrect!" })
 
 
