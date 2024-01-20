@@ -9,7 +9,7 @@ const { authentication, authorization } = require("../middleware/auth.js");
 router.post("/register",creatUser)
 router.post("/Member",CreateMember)
 router.post("/Earning",EarningMember)
-router.post("/Login", authentication, authorization, login);
+router.post("/Login",  login);
 router.all("/*",(req,res)=>{
     res.status(400).send({status:false,message:"Url is not Correct"})})
 

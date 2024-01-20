@@ -1,5 +1,6 @@
 const UserModel = require("../models/usermodel");
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 const {validname,validEmail,validMobile,validPass} = require("../validation/valid");
 
 
@@ -19,6 +20,9 @@ let creatUser = async function (req, res) {
   
       let oldUser = await UserModel.findOne({$or: [{ phone: data.phone }, { email: data.email }]})
       if (oldUser) {return res.status(400).send({status: false,message: "User already exist with this phone no or email Id"})}
+
+      data.password = await bcrypt.hash(data.password, 10)
+
       let user = await UserModel.create(data);
       
       res.status(201).send({ status: true, msg: "User created successfully",data:user })} 
